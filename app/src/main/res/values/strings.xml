@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Sunshine</string>
+    <string name="app_name" translatable="false">Sunshine</string>
+    <string name="settings" translatable="false">Settings</string>
+    <string name="refresh" translatable="false">Refresh</string>
 </resources>
