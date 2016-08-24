@@ -1,9 +1,11 @@
 package com.aloktripathy.sunshine;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.text.format.Time;
 import android.util.Log;
@@ -37,7 +39,9 @@ import java.util.List;
  */
 public class ForecastFragment extends Fragment {
     public final String LOG_TAG = ForecastFragment.class.getSimpleName();
+    public final int DEFAULT_DAYS = 14;
     private OnFragmentInteractionListener mListener;
+    private String mLocation;
     private static ArrayAdapter<String> forecastAdapter;
 
     public ForecastFragment() {
@@ -53,7 +57,7 @@ public class ForecastFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                new FetchWeatherTask().setDays(14).setQuery("Cuttack").execute();
+                refresh();
                 return true;
             default:
                 super.onOptionsItemSelected(item);
@@ -61,11 +65,33 @@ public class ForecastFragment extends Fragment {
         }
     }
 
+    private String getLocation() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        return sp.getString(
+                getString(R.string.preference_location_key),
+                getString(R.string.preference_location_default)
+                );
+    }
+
+    private void refresh() {
+        mLocation = getLocation();
+        new FetchWeatherTask().setDays(DEFAULT_DAYS).setQuery(mLocation).execute();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Add this line in order for this fragment to handle menu events.
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        String location = getLocation();
+        if (!location.equals(mLocation)) {
+            refresh();
+        }
     }
 
     @Override
@@ -89,6 +115,7 @@ public class ForecastFragment extends Fragment {
             }
         });
         listview_forecast.setAdapter(forecastAdapter);
+        refresh();
         return rootView;
     }
 

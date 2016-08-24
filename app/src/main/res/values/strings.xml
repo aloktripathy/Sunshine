@@ -2,4 +2,14 @@
     <string name="app_name" translatable="false">Sunshine</string>
     <string name="settings" translatable="false">Settings</string>
     <string name="refresh" translatable="false">Refresh</string>
+    <string name="preference_temperature_title">Celsius or Fahrenheit?</string>
+    <string name="preference_temperature_key">temperature_unit</string>
+    <string name="preference_location_title">Which city?</string>
+    <string name="preference_location_key">location</string>
+    <string name="preference_location_default">Bangalore</string>
+    <string name="temperature_unit_celsius_entry">Celsius</string>
+    <string name="temperature_unit_celsius_value">celsius</string>
+    <string name="temperature_unit_fahrenheit_entry">Fahrenheit</string>
+    <string name="temperature_unit_fahrenheit_value">fahrenheit</string>
+    <string name="location_preference_summary">A city or pin code.</string>
 </resources>

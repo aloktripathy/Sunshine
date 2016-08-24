@@ -23,6 +23,10 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
                 .commit();
     }
 
+    public void showSettingsActivity() {
+        startActivity(new Intent(this, SettingsActivity.class));
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.detail, menu);
@@ -33,10 +37,11 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.detail_settings:
+                showSettingsActivity();
                 return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

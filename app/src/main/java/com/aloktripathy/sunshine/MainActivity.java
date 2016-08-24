@@ -36,9 +36,19 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    public void showSettingsActivity() {
+        startActivity(new Intent(this, SettingsActivity.class));
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return false;
+        switch(item.getItemId()) {
+            case R.id.main_settings:
+                showSettingsActivity();
+                return true;
+            default:
+                return false;
+        }
     }
 
     @Override

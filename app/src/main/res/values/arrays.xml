@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="temperature_unit_entries">
+        <item>@string/temperature_unit_celsius_entry</item>
+        <item>@string/temperature_unit_fahrenheit_entry</item>
+    </string-array>
+    <string-array name="temperature_unit_values">
+        <item>@string/temperature_unit_celsius_value</item>
+        <item>@string/temperature_unit_fahrenheit_value</item>
+    </string-array>
+</resources>
